@@ -6,6 +6,8 @@ import jakarta.persistence.Persistence;
 
 public class Main {
     public static void main(String[] args) {
+
+        //Rode essa classe antes de rodar qualquer outra class teste
         try {
             EntityManagerFactory emf = Persistence.createEntityManagerFactory("transportadoraPu");
             EntityManager em = emf.createEntityManager();

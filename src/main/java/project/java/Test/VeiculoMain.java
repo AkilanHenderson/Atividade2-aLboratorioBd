@@ -32,6 +32,7 @@ public class VeiculoMain {
             veiculoService.salvar(veiculo1);
 
             System.out.println("Veículo salvo com sucesso: " + veiculo1);
+            System.out.println("veiculo  salvo no id: " + veiculo1.getId());
 
             Veiculo veiculo2 = Veiculo.builder()
                     .id(null)
@@ -44,6 +45,7 @@ public class VeiculoMain {
             veiculoService.salvar(veiculo2);
 
             System.out.println("Veículo salvo com sucesso: " + veiculo2);
+            System.out.println("veiculo  salvo no id: " + veiculo2.getId());
 
             // Adiciona os veículos à lista de veículos da filial
             filial.getVeiculos().add(veiculo1);

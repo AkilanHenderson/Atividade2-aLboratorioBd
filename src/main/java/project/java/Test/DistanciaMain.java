@@ -15,25 +15,26 @@ public class DistanciaMain {
 
         //Criando a distancia para associar a cidade, rode primeiro cidade antes de rodar distancia
 
-        try{
+        try {
 
-        Cidade cidade1 = cidadeService.buscarPorId(1);
-        Cidade cidade2 = cidadeService.buscarPorId(2);
+            Cidade cidade1 = cidadeService.buscarPorId(1);
+            Cidade cidade2 = cidadeService.buscarPorId(2);
 
-        if (cidade1 == null && cidade2 == null) {
+            if (cidade1 == null && cidade2 == null) {
                 throw new RuntimeException("Dependentes não encontrados!");
             }
 
-        Distancia distancia = Distancia.builder()
-                .id(null)
-                .quilometros(new BigDecimal("300.50"))
-                .origem(cidade1)
-                .destino(cidade2)
-                .build();
+            Distancia distancia = Distancia.builder()
+                    .id(null)
+                    .quilometros(new BigDecimal("300.50"))
+                    .origem(cidade1)
+                    .destino(cidade2)
+                    .build();
 
-        distanciaService.salvar(distancia);
+            distanciaService.salvar(distancia);
 
-        System.out.println("Distância salva com sucesso: " + distancia);
+            System.out.println("Distância salva com sucesso: " + distancia);
+            System.out.println("Distancia salvo no id: " + distancia.getId());
 
             cidade1.getDistanciasDestino().add(distancia);
             cidadeService.atualizar(cidade1);
@@ -42,6 +43,7 @@ public class DistanciaMain {
             cidadeService.atualizar(cidade2);
 
             System.out.println("Cidade1 atualizada com sucesso: " + cidade1);
+
             System.out.println("Cidade2 atualizada com sucesso: " + cidade2);
 
         } catch (Exception e) {

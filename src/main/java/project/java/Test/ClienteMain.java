@@ -22,6 +22,9 @@ public class ClienteMain {
                 .build();
 
         clienteService.salvar(cliente);
+
+        System.out.println("Cliente salvo com sucesso: " + cliente);
+
         System.out.println("Cliente salvo com sucesso. ID: " + cliente.getId());
 
 

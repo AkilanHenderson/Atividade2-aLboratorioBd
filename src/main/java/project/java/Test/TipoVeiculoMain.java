@@ -30,8 +30,9 @@ public class TipoVeiculoMain {
          tipoVeiculoService.salvar(tipoVeiculo);
 
         System.out.println("Tipo de Veículo salvo com sucesso: " + tipoVeiculo);
+            System.out.println("Tipo Veiculo salvo no id: " + tipoVeiculo.getId());
 
-        // Adiciona os tipoveiculo a veiculo
+            // Adiciona os tipoveiculo a veiculo
         veiculo1.setTipoVeiculo(tipoVeiculo);
         veiculo2.setTipoVeiculo(tipoVeiculo);
 
@@ -39,6 +40,7 @@ public class TipoVeiculoMain {
         veiculoService.atualizar(veiculo2);
 
         System.out.println("Veiculo1 atualizado com sucesso: " + veiculo1);
+
         System.out.println("Veiculo2 atualizado com sucesso: " + veiculo2);
 
         } catch (Exception e) {

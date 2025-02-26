@@ -30,10 +30,10 @@ public class FreteMain {
             entityManager.getTransaction().begin();
 
             // Busca as entidades necessárias
-            CategoriaFrete categoriaFrete = categoriaFreteService.buscarPorId(1);
+            CategoriaFrete categoriaFrete = categoriaFreteService.buscarPorId(2); //CategoriaFrete: 1- normal, 2- rapida, 3-superRapida
             Cidade cidadeOrigem = cidadeService.buscarPorId(1);
             Cidade cidadeDestino = cidadeService.buscarPorId(2);
-            Cliente cliente = clienteService.buscarPorId(4);
+            Cliente cliente = clienteService.buscarPorId(2);
             Veiculo veiculo = veiculoService.buscarPorId(1);
             Distancia distancia = distanciaService.buscarPorId(1);
 
@@ -46,8 +46,8 @@ public class FreteMain {
             // Cria o Frete e associa as entidades
             Frete frete = Frete.builder()
                     .id(null)
-                    .numeroNotaFiscal(12345)
-                    .valorKmRodado(new BigDecimal("100.50"))
+                    .numeroNotaFiscal(12543)
+                    .valorKmRodado(new BigDecimal("200.50"))
                     .veiculo(veiculo)
                     .cliente(cliente)
                     .categoriaFrete(categoriaFrete)
@@ -55,20 +55,16 @@ public class FreteMain {
                     .cidadeDestino(cidadeDestino)
                     .build();
 
-            // Salva o Frete no banco de dados primeiro
+            // Salva o Frete no banco de dados
             freteService.salvar(frete);
 
-            // Agora busca o ItemFrete e associa ao Frete
+            // Associa o ItemFrete ao Frete
             ItemFrete itemFrete = itemFreteService.buscarPorId(1);
             if (itemFrete == null) {
                 throw new RuntimeException("ItemFrete não encontrado!");
             }
             itemFrete.setFrete(frete);
             itemFreteService.atualizar(itemFrete);
-
-            System.out.println("Frete salvo com sucesso: " + frete);
-            System.out.println("Frete salvo no id: " + frete.getId());
-
 
             // Associa o Frete às outras entidades e atualiza-as
             veiculo.getFrete().add(frete);
@@ -93,11 +89,12 @@ public class FreteMain {
 
             // Testa o método buscarPorId
             Frete freteEncontrado = freteService.buscarPorId(frete.getId());
-            System.out.println("Frete encontrado: " + freteEncontrado);
+            System.out.println("Frete encontrado por ID: " + freteEncontrado);
 
             // Testa o método buscarFretesPorCliente
             List<Frete> fretesDoCliente = freteService.buscarFretesPorCliente(cliente.getId());
-            System.out.println("Fretes encontrados para o cliente: " + fretesDoCliente.size());
+            System.out.println("Fretes encontrados para o cliente " + cliente.getId() + ": " + fretesDoCliente.size());
+            fretesDoCliente.forEach(f -> System.out.println(" - " + f));
 
         } catch (Exception e) {
             // Rollback se ocorrer erro
@@ -111,5 +108,6 @@ public class FreteMain {
             emf.close();
         }
     }
-}
+    }
+
 

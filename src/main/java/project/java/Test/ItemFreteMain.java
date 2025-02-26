@@ -20,6 +20,7 @@ public class ItemFreteMain {
         itemFreteService.salvar(itemFrete);
 
         System.out.println("itemFrete salva com sucesso: " + itemFrete);
+        System.out.println("ItemFrete salvo no id: " + itemFrete.getId());
 
     }
 }
